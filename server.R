@@ -17,12 +17,14 @@ MisNodes$ID <- 1:nrow(MisNodes)
 #### Shiny ####
 shinyServer(function(input, output) {
 
-    output$networkPlot <- renderPrint({
+        out <- capture.output(output$networkPlot <- renderPrint({
         d3ForceNetwork(Nodes = MisNodes, 
             Links = MisLinks,  
             Source = "source", Target = "target", 
             Value = "value", NodeID = "name", 
             Group = "group", width = 550, height = 400, 
-            opacity = input$slider, standAlone = FALSE)
+            opacity = input$slider, standAlone = FALSE))
+            out <- gsub('select\\(\"body\")', 'select\\(\"#networkPlot\")', out)
+           cat(out)
     })
 })
