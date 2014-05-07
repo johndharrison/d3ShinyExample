@@ -23,6 +23,6 @@ shinyServer(function(input, output) {
                                          Source = "source", Target = "target", 
                                          Value = "value", NodeID = "name", 
                                          Group = "group", width = 550, height = 400, 
-                                         opacity = input$slider, standAlone = FALSE, parentElem = '\"networkPlot\"')
+                                         opacity = input$slider, standAlone = FALSE, parentElem = '#networkPlot')
   })
 })
