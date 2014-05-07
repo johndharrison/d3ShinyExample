@@ -18,13 +18,11 @@ MisNodes$ID <- 1:nrow(MisNodes)
 shinyServer(function(input, output) {
   
   output$networkPlot <- renderPrint({
-    out <- capture.output(d3ForceNetwork(Nodes = MisNodes, 
+    d3ForceNetwork(Nodes = MisNodes, 
                                          Links = MisLinks,  
                                          Source = "source", Target = "target", 
                                          Value = "value", NodeID = "name", 
                                          Group = "group", width = 550, height = 400, 
-                                         opacity = input$slider, standAlone = FALSE))
-    out <- gsub('select\\(\"body\")', 'select\\(\"#networkPlot\")', out)
-    cat(out)
+                                         opacity = input$slider, standAlone = FALSE, parentElem = '\"networkPlot\"'))
   })
 })
